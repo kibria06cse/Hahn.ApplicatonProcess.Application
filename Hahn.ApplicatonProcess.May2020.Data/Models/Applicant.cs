@@ -56,11 +56,6 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Models
             IsDeleted = true;
         }
 
-        public void MarkAsDeleteEmployeeEmail()
-        {
-            IsDeleted = true;
-        }
-
 
     }
 }

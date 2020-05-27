@@ -1,4 +1,5 @@
 ﻿using Hahn.ApplicatonProcess.May2020.Data.Dtos;
+using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands
 {
-    public class CreateApplicantCommand : IRequest<ApplicantDto>
+    public class CreateApplicantCommand : IRequest<ApplicantVM>
     {
         public ApplicantDto Applicant { get; set; }
     }

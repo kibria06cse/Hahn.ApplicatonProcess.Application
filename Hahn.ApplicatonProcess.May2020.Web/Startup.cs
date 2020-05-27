@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Hahn.ApplicatonProcess.May2020.Data.EntityFramework;
+using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +36,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
+            services.AddMediatR(typeof(CreateApplicantCommandHandler).GetTypeInfo().Assembly);
 
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -41,14 +45,14 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
+                    Title = "Hahn.ApplicatonProcess.Application API",
                     Description = "A simple example ASP.NET Core Web API",
                     TermsOfService = new Uri("https://example.com/terms"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Shayne Boyer",
-                        Email = string.Empty,
-                        Url = new Uri("https://twitter.com/spboyer"),
+                        Name = "Abdus Salam Azad",
+                        Email = "kibria06cse@gmail.com",
+                        Url = new Uri("https://stackoverflow.com/users/2738695/abdus-salam-azad"),
                     },
                     License = new OpenApiLicense
                     {
@@ -75,7 +79,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hahn.ApplicatonProcess.Application API V1");
             });
 
 

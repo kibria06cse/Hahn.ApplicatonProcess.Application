@@ -5,4 +5,7 @@
 *.v2
 /Hahn.ApplicatonProcess.May2020.Domain/bin/Debug/netstandard2.1
 /Hahn.ApplicatonProcess.May2020.Domain/obj
+/Hahn.ApplicatonProcess.May2020.Data/obj
 /.vs/Hahn.ApplicatonProcess.Application/v16
+*/obj
+*/bin

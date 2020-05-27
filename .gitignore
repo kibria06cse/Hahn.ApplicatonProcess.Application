@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+*.v2
+/Hahn.ApplicatonProcess.May2020.Domain/bin/Debug/netstandard2.1
+/Hahn.ApplicatonProcess.May2020.Domain/obj
+/.vs/Hahn.ApplicatonProcess.Application/v16

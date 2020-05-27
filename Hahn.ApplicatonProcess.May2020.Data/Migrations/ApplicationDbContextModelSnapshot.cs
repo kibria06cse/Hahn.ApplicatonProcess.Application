@@ -20,7 +20,7 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Migrations
 
             modelBuilder.Entity("Hahn.ApplicatonProcess.May2020.Domain.Models.Applicant", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -43,11 +43,14 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Migrations
                     b.Property<bool>("Hired")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Applicants");
                 });

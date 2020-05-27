@@ -1,0 +1,9 @@
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\bin\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.deps.json
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\bin\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.dll
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\bin\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.pdb
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\obj\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.csprojAssemblyReference.cache
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\obj\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.csproj.CoreCompileInputs.cache
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\obj\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.AssemblyInfoInputs.cache
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\obj\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.AssemblyInfo.cs
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\obj\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.dll
+E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Data\obj\Debug\netstandard2.1\Hahn.ApplicatonProcess.May2020.Data.pdb

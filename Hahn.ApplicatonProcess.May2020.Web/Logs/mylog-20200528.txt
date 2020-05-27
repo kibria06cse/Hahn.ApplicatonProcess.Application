@@ -1,0 +1,3 @@
+2020-05-28T01:04:25.2898125+06:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2020-05-28T01:04:25.3005908+06:00  [INF] Hosting environment: "Development" (c3307c92)
+2020-05-28T01:04:25.3032814+06:00  [INF] Content root path: "E:\kibria\Visual Studio Default Path\Job Test\HHHH\Hahn.ApplicatonProcess.Application\Hahn.ApplicatonProcess.May2020.Web" (b5d60022)

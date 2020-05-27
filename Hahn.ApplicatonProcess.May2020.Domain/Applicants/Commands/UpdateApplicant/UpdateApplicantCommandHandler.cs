@@ -3,6 +3,7 @@ using Hahn.ApplicatonProcess.May2020.Data.EntityFramework;
 using Hahn.ApplicatonProcess.May2020.Data.Models;
 using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.Models;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.UpdateApplic
     public class UpdateApplicantCommandHandler : IRequestHandler<UpdateApplicantCommand, ApplicantVM>
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly ILogger<UpdateApplicantCommandHandler> _logger;
 
-        public UpdateApplicantCommandHandler(ApplicationDbContext dbContext)
+        public UpdateApplicantCommandHandler(ApplicationDbContext dbContext, ILogger<UpdateApplicantCommandHandler> logger)
         {
             this._dbContext = dbContext;
+            this._logger = logger;
         }
 
         public async Task<ApplicantVM> Handle(UpdateApplicantCommand request, CancellationToken cancellationToken)
@@ -38,6 +41,8 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.UpdateApplic
 
                 await _dbContext.SaveChangesAsync();
 
+                _logger.LogInformation("Applicant updated successfully", entity);
+
                 response.Status = true;
                 response.Message = "Applicant updated successfully.";
                 response.Id = entity.Id;
@@ -45,6 +50,7 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.UpdateApplic
             }
             catch (Exception ex)
             {
+                _logger.LogInformation(ex.Message.ToString(), request.Applicant);
                 response.Message = ex.Message.ToString();
             }
 

@@ -3,6 +3,7 @@ using Hahn.ApplicatonProcess.May2020.Data.EntityFramework;
 using Hahn.ApplicatonProcess.May2020.Data.Models;
 using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.Models;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,12 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands
     public class CreateApplicantCommandHandler : IRequestHandler<CreateApplicantCommand, ApplicantVM>
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly ILogger<CreateApplicantCommandHandler> _logger;
 
-        public CreateApplicantCommandHandler(ApplicationDbContext dbContext)
+        public CreateApplicantCommandHandler(ApplicationDbContext dbContext, ILogger<CreateApplicantCommandHandler> logger )
         {
             this._dbContext = dbContext;
+            this._logger = logger;
         }
 
         public async Task<ApplicantVM> Handle(CreateApplicantCommand request, CancellationToken cancellationToken)
@@ -38,6 +41,8 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands
 
                 await _dbContext.SaveChangesAsync();
 
+                _logger.LogInformation("New Applicant created", data);
+
                 response.Status = true;
                 response.Message = "Applicant edited successfully.";
                 response.Id = entity.Id;
@@ -45,7 +50,7 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex.Message.ToString(), request.Applicant);
                 response.Message = ex.Message.ToString();
             }
 

@@ -13,7 +13,7 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Applicant> builder)
         {
-            builder.Property(a => a.Name).HasMaxLength(20);
+            builder.Property(a => a.Name).IsRequired();
         }
     }
 }

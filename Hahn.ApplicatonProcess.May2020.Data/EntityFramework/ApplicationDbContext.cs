@@ -1,4 +1,4 @@
-﻿using Hahn.ApplicatonProcess.May2020.Domain.Models;
+﻿using Hahn.ApplicatonProcess.May2020.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

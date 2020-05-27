@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hahn.ApplicatonProcess.May2020.Domain.Models
+namespace Hahn.ApplicatonProcess.May2020.Data.Models
 {
     public abstract class BaseEntity<TId>
     {

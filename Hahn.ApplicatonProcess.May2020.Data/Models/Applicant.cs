@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ardalis.GuardClauses;
 
-namespace Hahn.ApplicatonProcess.May2020.Domain.Models
+namespace Hahn.ApplicatonProcess.May2020.Data.Models
 {
     public class Applicant : BaseEntity<int>
     {

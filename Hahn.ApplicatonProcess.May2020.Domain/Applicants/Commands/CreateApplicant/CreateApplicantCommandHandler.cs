@@ -48,7 +48,7 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands
                 _logger.LogInformation("New Applicant created", data);
 
                 response.Status = true;
-                response.Message = "Applicant edited successfully.";
+                response.Message = "Applicant created successfully.";
                 response.Id = entity.Id;
 
             }

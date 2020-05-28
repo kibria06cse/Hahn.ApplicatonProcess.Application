@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.UpdateApplicant
 {
-    public class UpdateApplicantCommandHandler : IRequestHandler<UpdateApplicantCommand, ApplicantVM>
+    public class UpdateApplicantCommandHandler : BaseCommandHandler, IRequestHandler<UpdateApplicantCommand, ApplicantVM>
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly ILogger<UpdateApplicantCommandHandler> _logger;
 
-        public UpdateApplicantCommandHandler(ApplicationDbContext dbContext, ILogger<UpdateApplicantCommandHandler> logger)
+        public UpdateApplicantCommandHandler(ApplicationDbContext dbContext, ILogger<UpdateApplicantCommandHandler> logger, IMediator mediator) : base(mediator)
         {
             this._dbContext = dbContext;
             this._logger = logger;
@@ -35,6 +35,9 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.UpdateApplic
             try
             {
                 var applicantDto = request.Applicant;
+
+                await ValidateApplicatint(applicantDto);
+
                 var entity = await _dbContext.Applicants.FindAsync(applicantDto.ID);
 
                 entity.Update(applicantDto.Name, applicantDto.FamilyName, applicantDto.Address, applicantDto.CountryOfOrigin, applicantDto.EMailAdress, applicantDto.Age, applicantDto.Hired);

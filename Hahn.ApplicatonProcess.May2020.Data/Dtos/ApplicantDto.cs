@@ -14,11 +14,11 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Dtos
         public string Name { get; set; }
         [StringLength(100, MinimumLength = 5)]
         public string FamilyName { get; set; }
-        [StringLength(100, MinimumLength = 5)]
+        [StringLength(200, MinimumLength = 10)]
         public string Address { get; set; }
         [StringLength(100, MinimumLength = 5)]
         public string CountryOfOrigin { get; set; }
-        [EmailAddress, StringLength(100, MinimumLength = 5)]
+        [EmailAddress]
         public string EMailAdress { get; set; }
         [Range(20,60)]
         public int Age { get; set; }

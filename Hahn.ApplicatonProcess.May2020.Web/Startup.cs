@@ -43,7 +43,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             services.AddSpaStaticFiles(
                 configuration =>
                 {
-                    configuration.RootPath = "aurelia-app/dist";
+                    configuration.RootPath = "ClientApp/dist";
                 });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
@@ -73,7 +73,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddFile("Logs/mylog-{Date}.txt");
+            loggerFactory.AddFile("Logs/log-{Date}.txt");
 
             if (env.IsDevelopment())
             {
@@ -86,12 +86,12 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "aurelia-app");
+                spa.Options.SourcePath = "ClientApp";
 
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAureliaCliServer();
+                    spa.UseAureliaCliServer(npmScript: "start");
                 }
             });
 

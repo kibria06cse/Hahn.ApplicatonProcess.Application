@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Aurelia.DotNet;
 using Hahn.ApplicatonProcess.May2020.Data.EntityFramework;
 using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands;
 using MediatR;
@@ -31,13 +33,18 @@ namespace Hahn.ApplicatonProcess.May2020.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
+            services.AddControllers();
+
             services.AddMediatR(typeof(CreateApplicantCommandHandler).GetTypeInfo().Assembly);
 
+            services.AddSpaStaticFiles(
+                configuration =>
+                {
+                    configuration.RootPath = "aurelia-app/dist";
+                });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -74,6 +81,20 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = Path.Join(env.ContentRootPath, "aurelia-app");
+
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAureliaCliServer();
+                }
+            });
+
 
             app.UseSwagger();
 

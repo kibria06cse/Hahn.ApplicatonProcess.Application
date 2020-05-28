@@ -4,6 +4,7 @@ using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.DeleteApplicant;
 using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Commands.UpdateApplicant;
 using Hahn.ApplicatonProcess.May2020.Domain.Applicants.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,7 +29,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
         }
 
         [HttpGet("", Name = "GetAll")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get()
         {
             var data = await _mediator.Send(new GetApplicantListQuery());
             return Ok(data);
@@ -42,6 +43,8 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
         public async Task<IActionResult> Post([FromBody]ApplicantDto model)
         {
             try
@@ -52,10 +55,13 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
                 }
 
                 var data = await _mediator.Send(new CreateApplicantCommand { Applicant = model });
-                return Ok(data);
+                //return CreatedAtRoute("GetById",new { id = data.Id });
+                return CreatedAtAction(nameof(GetById), new { id = data.Id }, data);
+
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message.ToString(), model);
                 throw ex;
             }
         }
@@ -79,6 +85,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message.ToString(), model);
                 throw ex;
             }
 

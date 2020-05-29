@@ -1,5 +1,5 @@
 {
-  "name": "client-app",
+  "name": "i-18-ntest",
   "type": "project:application",
   "paths": {
     "root": "src",
@@ -26,5 +26,6 @@
     "port": 8080,
     "host": "localhost",
     "output": "dist"
-  }
+  },
+  "packageManager": "yarn"
 }

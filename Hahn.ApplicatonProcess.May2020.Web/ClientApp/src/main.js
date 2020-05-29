@@ -4,8 +4,7 @@ import { Backend, TCustomAttribute } from "aurelia-i18n";
 var resBundle = require('i18next-resource-store-loader!./locales/index');
 export function configure(aurelia) {
     aurelia.use
-        .standardConfiguration()
-        .feature('resources');
+        .standardConfiguration();
     aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
     if (environment.testing) {
         aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));

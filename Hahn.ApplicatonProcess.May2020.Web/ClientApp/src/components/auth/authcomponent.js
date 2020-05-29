@@ -7,9 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { autoinject } from 'aurelia-dependency-injection';
+import { inject } from 'aurelia-dependency-injection';
 import { Router, activationStrategy } from 'aurelia-router';
 import { ValidationControllerFactory, ValidationRules } from 'aurelia-validation';
+import { BootstrapFormRenderer } from '../../shared/bootstrap-form-renderer';
 var AuthComponent = (function () {
     function AuthComponent(controllerFactory, router) {
         this.type = '';
@@ -18,6 +19,7 @@ var AuthComponent = (function () {
         this.password = '';
         this.errors = null;
         this.controller = controllerFactory.createForCurrentScope();
+        this.controller.addRenderer(new BootstrapFormRenderer());
         this.router = router;
         ValidationRules
             .ensure('email').required().email()
@@ -46,6 +48,7 @@ var AuthComponent = (function () {
     AuthComponent.prototype.submit = function () {
         var _this = this;
         this.errors = null;
+        this.controller.validate();
         this.controller.validate()
             .then(function (result) {
             if (result.valid) {
@@ -58,7 +61,7 @@ var AuthComponent = (function () {
         });
     };
     AuthComponent = __decorate([
-        autoinject,
+        inject(ValidationControllerFactory),
         __metadata("design:paramtypes", [ValidationControllerFactory, Router])
     ], AuthComponent);
     return AuthComponent;

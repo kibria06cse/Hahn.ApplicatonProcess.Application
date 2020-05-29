@@ -22,14 +22,23 @@ var BootstrapFormRenderer = (function () {
         if (!formGroup) {
             return;
         }
+        var formControl = element.parentNode.firstElementChild;
         if (result.valid) {
             if (!formGroup.classList.contains('has-error')) {
                 formGroup.classList.add('has-success');
+                if (formControl) {
+                    formControl.classList.add('is-valid');
+                    formControl.classList.remove('is-invalid');
+                }
             }
         }
         else {
             formGroup.classList.remove('has-success');
             formGroup.classList.add('has-error');
+            if (formControl) {
+                formControl.classList.add('is-invalid');
+                formControl.classList.remove('is-valid');
+            }
             var message = document.createElement('span');
             message.className = 'help-block validation-message';
             message.textContent = result.message;

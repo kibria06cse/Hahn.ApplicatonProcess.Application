@@ -10,11 +10,13 @@ import { inject, autoinject } from 'aurelia-dependency-injection';
 
 import { Router, activationStrategy } from 'aurelia-router';
 import { ValidationControllerFactory, ValidationRules, ValidationController } from 'aurelia-validation';
+import { BootstrapFormRenderer } from '../../shared/bootstrap-form-renderer';
 //import { UserService } from '../../shared/services/userservice';
 //import { SharedState } from '../../shared/state/sharedstate';
 
 
-@autoinject
+@inject(ValidationControllerFactory)
+
 export class AuthComponent {
   type = '';
   username = '';
@@ -26,6 +28,8 @@ export class AuthComponent {
 
   constructor(controllerFactory: ValidationControllerFactory,router: Router) {
     this.controller = controllerFactory.createForCurrentScope();
+    this.controller.addRenderer(new BootstrapFormRenderer());
+
     this.router = router;
 
     ValidationRules
@@ -56,6 +60,8 @@ export class AuthComponent {
 
   submit() {
     this.errors = null;
+    this.controller.validate();
+
 
     this.controller.validate()
       .then(result => {

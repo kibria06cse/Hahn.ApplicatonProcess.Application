@@ -11,8 +11,10 @@
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.2",
     "aurelia-i18n": "^3.1.0",
-    "i18next-resource-store-loader": "^0.1.2",
+    "aurelia-router": "^1.7.1",
+    "aurelia-validation": "^2.0.0-rc1",
     "bootstrap": "^4.5.0",
+    "i18next-resource-store-loader": "^0.1.2",
     "i18next-xhr-backend": "^3.2.2",
     "jquery": "^3.5.1"
   },

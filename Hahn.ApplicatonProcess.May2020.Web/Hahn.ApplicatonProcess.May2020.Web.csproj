@@ -23,5 +23,9 @@
     <ProjectReference Include="..\Hahn.ApplicatonProcess.May2020.Domain\Hahn.ApplicatonProcess.May2020.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ClientApp\src\components\auth\" />
+  </ItemGroup>
+
 
 </Project>

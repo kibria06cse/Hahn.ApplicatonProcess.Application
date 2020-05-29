@@ -15,5 +15,10 @@
   ],
   "files": [
     "src/resource.d.ts"
+  ],
+  "filesGlob": [
+    "./typings/browser.d.ts",
+    "./custom_typings/**/*.d.ts"
   ]
+
 }

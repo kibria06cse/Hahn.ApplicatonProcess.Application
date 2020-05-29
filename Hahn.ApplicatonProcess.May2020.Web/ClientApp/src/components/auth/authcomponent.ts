@@ -51,6 +51,7 @@ export class AuthComponent {
   }
 
   get canSave() {
+    debugger
     if (this.type === 'login') {
       return this.email !== '' && this.password !== '';
     } else {
@@ -60,11 +61,10 @@ export class AuthComponent {
 
   submit() {
     this.errors = null;
-    this.controller.validate();
-
-
+   
     this.controller.validate()
       .then(result => {
+        debugger
         if (result.valid) {
           const credentials = {
             username: this.username,

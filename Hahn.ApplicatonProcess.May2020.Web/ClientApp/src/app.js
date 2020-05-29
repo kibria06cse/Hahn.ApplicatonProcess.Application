@@ -6,7 +6,7 @@ var App = (function () {
         this.router = router;
         config.title = 'Aurelia';
         config.map([
-            { route: ['', 'home'], name: 'home', moduleId: PLATFORM.moduleName('components/auth/authcomponent') }
+            { route: ['', 'home'], name: 'login', moduleId: PLATFORM.moduleName('components/auth/authcomponent') }
         ]);
     };
     return App;

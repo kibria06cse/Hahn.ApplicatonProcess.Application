@@ -35,6 +35,7 @@ var AuthComponent = (function () {
     };
     Object.defineProperty(AuthComponent.prototype, "canSave", {
         get: function () {
+            debugger;
             if (this.type === 'login') {
                 return this.email !== '' && this.password !== '';
             }
@@ -48,9 +49,9 @@ var AuthComponent = (function () {
     AuthComponent.prototype.submit = function () {
         var _this = this;
         this.errors = null;
-        this.controller.validate();
         this.controller.validate()
             .then(function (result) {
+            debugger;
             if (result.valid) {
                 var credentials = {
                     username: _this.username,

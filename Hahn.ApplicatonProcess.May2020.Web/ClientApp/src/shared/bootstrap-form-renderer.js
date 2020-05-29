@@ -40,7 +40,7 @@ var BootstrapFormRenderer = (function () {
                 formControl.classList.remove('is-valid');
             }
             var message = document.createElement('span');
-            message.className = 'help-block validation-message';
+            message.className = 'invalid-feedback';
             message.textContent = result.message;
             message.id = "validation-message-" + result.id;
             formGroup.appendChild(message);

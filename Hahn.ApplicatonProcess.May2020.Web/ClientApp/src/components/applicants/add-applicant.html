@@ -29,18 +29,24 @@
               <input class="form-control form-control-lg" type="text" placeholder="Address" value.bind="address & validate">
             </fieldset>
             <fieldset class="form-group">
+              <input class="form-control form-control-lg" type="text" placeholder="country Of Origin" value.bind="countryOfOrigin & validate">
+            </fieldset>
+            <fieldset class="form-group">
               <input class="form-control form-control-lg" type="text" placeholder="Email" value.bind="email & validate">
             </fieldset>
             <fieldset class="form-group">
               <input class="form-control form-control-lg" type="text" placeholder="Age" value.bind="age & validate">
             </fieldset>
-            <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Hired" value.bind="hired & validate">
+            
+
+            <fieldset class="form-group form-check">
+              <input type="checkbox" class="form-check-input" checked.bind="hired">
+              <label class="form-check-label" for="exampleCheck1">Hired</label>
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="submit()" disabled.bind="!canSave">
               Send
             </button>
-            <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="reset()" disabled.bind="!canReset">
+            <button class="btn btn-lg btn-primary pull-xs-right" type="reset" disabled.bind="!canReset">
               Reset
             </button>
           </form>

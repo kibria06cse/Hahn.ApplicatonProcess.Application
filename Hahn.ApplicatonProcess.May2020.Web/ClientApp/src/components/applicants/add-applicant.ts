@@ -2,36 +2,39 @@ import { ValidationControllerFactory, ValidationRules, ValidationController } fr
 import { Router, activationStrategy } from "aurelia-router";
 import { BootstrapFormRenderer } from "../../shared/bootstrap-form-renderer";
 import { inject, autoinject } from 'aurelia-dependency-injection';
-import { I18N  } from "aurelia-i18n";
+import { I18N } from "aurelia-i18n";
+import { ApplicantService } from "../../shared/services/applicantService";
 
-@inject(ValidationControllerFactory, I18N, Router)
+@inject(ValidationControllerFactory, I18N, Router, ApplicantService)
 export class AddApplicant {
   controller: ValidationController;
   errors: any;
   router: Router;
   type: string;
-  name: any;
-  familyName: any;
-  address: any;
-  email: any;
-  age: any;
-  hired: any;
+  name: any = '';
+  familyName: any = '';
+  countryOfOrigin: any = '';
+  address: any = '';
+  email: any = '';
+  age: number;
+  hired: boolean = false;
   i18n: I18N;
+  applicantService: ApplicantService;
 
 
-  constructor(controllerFactory: ValidationControllerFactory, i18n: I18N, router: Router) {
+  constructor(controllerFactory: ValidationControllerFactory, i18n: I18N, router: Router, applicantService: ApplicantService) {
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
     this.i18n = i18n;
 
     this.router = router;
-
-    debugger
+    this.applicantService = applicantService;
 
     ValidationRules
-      .ensure('name').required().minLength(5).withMessage(this.i18n.tr('title'))
+      .ensure('name').required().withMessage(this.i18n.tr('other-translations:title')).minLength(5).withMessage(this.i18n.tr('title'))
       .ensure('familyName').required().minLength(5)
       .ensure('address').required().minLength(10)
+      .ensure('countryOfOrigin').required()
       .ensure('email').required().email()
       .ensure('age').required().between(20, 60)
       .ensure('hired').required()
@@ -50,18 +53,13 @@ export class AddApplicant {
 
 
   get canSave() {
-    this.controller.validate()
-      .then(result => {
-        if (result.valid) {
-          return true;
-        }
-      });
-    return false;
+    return this.name && this.name !== '' && this.name.length >= 5 && this.familyName !== '' && this.familyName.length >= 5
+      && this.address !== '' && this.address.length >= 10 && this.countryOfOrigin && this.email !== '';
   }
 
 
   get canReset() {
-    return this.name !== '' && this.familyName !== '' && this.address !== '' && this.email !== '' && this.age !== '' && this.hired !== '';
+    return this.name !== '' && this.familyName !== '' && this.address !== '' && this.email !== '' && this.age;
   }
 
 
@@ -84,11 +82,12 @@ export class AddApplicant {
             age: this.age,
             hired: this.hired
           };
-          //this.userService.attemptAuth(this.type, credentials)
-          //  .then(data => this.router.navigateToRoute('home'))
-          //  .catch(promise => {
-          //    promise.then(err => this.errors = err.errors)
-          //  });
+
+          this.applicantService.create(applicant)
+            .then(data => this.router.navigateToRoute('home'))
+            .catch(promise => {
+              promise.then(err => this.errors = err.errors)
+            });
         }
       })
   }

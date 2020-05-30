@@ -58,6 +58,17 @@ var AddApplicant = (function () {
         configurable: true
     });
     AddApplicant.prototype.reset = function () {
+        var dirtyFormID = 'add-applicant-form';
+        var resetForm = document.getElementById(dirtyFormID);
+        if (resetForm)
+            resetForm.reset();
+        this.name = '';
+        this.familyName = '';
+        this.address = '';
+        this.countryOfOrigin = '';
+        this.email = '';
+        this.hired = false;
+        this.age = null;
         this.controller.reset();
     };
     AddApplicant.prototype.submit = function () {
@@ -71,6 +82,7 @@ var AddApplicant = (function () {
                     name: _this.name,
                     familyName: _this.familyName,
                     address: _this.address,
+                    countryOfOrigin: _this.countryOfOrigin,
                     email: _this.email,
                     age: _this.age,
                     hired: _this.hired

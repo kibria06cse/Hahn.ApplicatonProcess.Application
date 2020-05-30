@@ -26,6 +26,7 @@ export class ApiService {
       headers: this.setHeaders()
     };
     return this.http.fetch(`${config.api_url}${path}?${qs.stringify(params)}`, options)
+      .then(response => response.json())
       .then(this.returnStatus)
       .catch(this.parseError)
   }
@@ -37,9 +38,22 @@ export class ApiService {
       body: json(body)
     };
     return this.http.fetch(`${config.api_url}${path}`, options)
+      .then(response => response.json())
       .then(this.returnStatus)
       .catch(this.parseError)
   }
+
+  //post(path, body = {}) {
+  //  const options = {
+  //    method: 'POST',
+  //    headers: this.setHeaders(),
+  //    body: json(body)
+  //  };
+  //  return this.http.fetch(`${config.api_url}${path}`, options)
+  //    .then(response => response.json())
+  //    .then(this.returnStatus)
+  //    .catch(this.parseError)
+  //}
 
   post(path, body = {}) {
     const options = {
@@ -48,6 +62,7 @@ export class ApiService {
       body: json(body)
     };
     return this.http.fetch(`${config.api_url}${path}`, options)
+      .then(response => response.json())
       .then(this.returnStatus)
       .catch(this.parseError)
   }
@@ -58,6 +73,7 @@ export class ApiService {
       headers: this.setHeaders()
     };
     return this.http.fetch(`${config.api_url}${path}`, options)
+      .then(response => response.json())
       .then(this.returnStatus)
       .catch(this.parseError)
   }

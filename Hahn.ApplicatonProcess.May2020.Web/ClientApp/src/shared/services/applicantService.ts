@@ -11,21 +11,21 @@ export class ApplicantService {
   }
 
   get(applicantId) {
-    return this.apiService.get('/applicant/' , this.apiService)
-      .then(data => data.profile)
+    return this.apiService.get('/Applicant/' , this.apiService)
+      .then(data => data)
   }
 
   create(applicant) {
-    return this.apiService.post('/applicant', { applicant })
+    return this.apiService.post('/Applicant', {model: applicant })
       .then(data => {
-        return data.user;
+        return data;
       });
   }
 
   update(applicant) {
-    return this.apiService.put('/applicant', { applicant })
+    return this.apiService.put('/Applicant', { applicant })
       .then(data => {
-        return data.user;
+        return data;
       });
   }
 }

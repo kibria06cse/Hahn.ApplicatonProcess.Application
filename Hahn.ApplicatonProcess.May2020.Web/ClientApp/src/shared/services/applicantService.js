@@ -14,19 +14,19 @@ var ApplicantService = (function () {
         this.apiService = apiService;
     }
     ApplicantService.prototype.get = function (applicantId) {
-        return this.apiService.get('/applicant/', this.apiService)
-            .then(function (data) { return data.profile; });
+        return this.apiService.get('/Applicant/', this.apiService)
+            .then(function (data) { return data; });
     };
     ApplicantService.prototype.create = function (applicant) {
-        return this.apiService.post('/applicant', { applicant: applicant })
+        return this.apiService.post('/Applicant', { applicant: applicant })
             .then(function (data) {
-            return data.user;
+            return data;
         });
     };
     ApplicantService.prototype.update = function (applicant) {
-        return this.apiService.put('/applicant', { applicant: applicant })
+        return this.apiService.put('/Applicant', { applicant: applicant })
             .then(function (data) {
-            return data.user;
+            return data;
         });
     };
     ApplicantService = __decorate([

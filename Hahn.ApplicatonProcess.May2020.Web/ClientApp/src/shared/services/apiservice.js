@@ -28,6 +28,7 @@ var ApiService = (function () {
             headers: this.setHeaders()
         };
         return this.http.fetch("" + config.api_url + path + "?" + qs.stringify(params), options)
+            .then(function (response) { return response.json(); })
             .then(this.returnStatus)
             .catch(this.parseError);
     };
@@ -39,6 +40,7 @@ var ApiService = (function () {
             body: json(body)
         };
         return this.http.fetch("" + config.api_url + path, options)
+            .then(function (response) { return response.json(); })
             .then(this.returnStatus)
             .catch(this.parseError);
     };
@@ -50,6 +52,7 @@ var ApiService = (function () {
             body: json(body)
         };
         return this.http.fetch("" + config.api_url + path, options)
+            .then(function (response) { return response.json(); })
             .then(this.returnStatus)
             .catch(this.parseError);
     };
@@ -59,6 +62,7 @@ var ApiService = (function () {
             headers: this.setHeaders()
         };
         return this.http.fetch("" + config.api_url + path, options)
+            .then(function (response) { return response.json(); })
             .then(this.returnStatus)
             .catch(this.parseError);
     };

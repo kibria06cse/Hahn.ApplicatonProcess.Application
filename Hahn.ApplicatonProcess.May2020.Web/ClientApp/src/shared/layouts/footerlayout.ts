@@ -1,4 +1,4 @@
-export class Y {
+export class Footerlayout {
   message: string;
 
   constructor() {

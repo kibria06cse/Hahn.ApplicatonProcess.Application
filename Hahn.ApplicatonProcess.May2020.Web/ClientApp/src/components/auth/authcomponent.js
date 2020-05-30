@@ -37,10 +37,10 @@ var AuthComponent = (function () {
         get: function () {
             debugger;
             if (this.type === 'login') {
-                return this.email !== '' && this.password !== '';
+                return this.email !== '' && this.password !== '' && this.password.length >= 8;
             }
             else {
-                return this.username !== '' && this.email !== '' && this.password !== '';
+                return this.username !== '' && this.email !== '' && this.password !== '' && this.password.length >= 8;
             }
         },
         enumerable: true,

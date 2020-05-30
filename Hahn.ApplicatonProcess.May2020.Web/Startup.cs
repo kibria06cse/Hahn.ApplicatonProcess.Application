@@ -40,12 +40,6 @@ namespace Hahn.ApplicatonProcess.May2020.Web
 
             services.AddMediatR(typeof(CreateApplicantCommandHandler).GetTypeInfo().Assembly);
 
-            services.AddSpaStaticFiles(
-                configuration =>
-                {
-                    configuration.RootPath = "ClientApp/dist";
-                });
-
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -68,6 +62,14 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                     }
                 });
             });
+            
+            services.AddSpaStaticFiles(
+                configuration =>
+                {
+                    configuration.RootPath = "ClientApp/dist";
+                });
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +84,17 @@ namespace Hahn.ApplicatonProcess.May2020.Web
 
             app.UseHttpsRedirection();
 
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hahn.ApplicatonProcess.Application API V1");
+            });
+            
+            
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
@@ -95,15 +108,6 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                 }
             });
 
-
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hahn.ApplicatonProcess.Application API V1");
-            });
 
 
             app.UseRouting();

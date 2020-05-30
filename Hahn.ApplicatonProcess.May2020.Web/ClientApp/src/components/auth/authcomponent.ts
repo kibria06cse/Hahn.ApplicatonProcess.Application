@@ -26,7 +26,7 @@ export class AuthComponent {
   controller: ValidationController;
   router: Router;
 
-  constructor(controllerFactory: ValidationControllerFactory,router: Router) {
+  constructor(controllerFactory: ValidationControllerFactory, router: Router) {
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
 
@@ -53,15 +53,15 @@ export class AuthComponent {
   get canSave() {
     debugger
     if (this.type === 'login') {
-      return this.email !== '' && this.password !== '';
+      return this.email !== '' && this.password !== '' && this.password.length >= 8;
     } else {
-      return this.username !== '' && this.email !== '' && this.password !== '';
+      return this.username !== '' && this.email !== '' && this.password !== '' && this.password.length >= 8;
     }
   }
 
   submit() {
     this.errors = null;
-   
+
     this.controller.validate()
       .then(result => {
         debugger

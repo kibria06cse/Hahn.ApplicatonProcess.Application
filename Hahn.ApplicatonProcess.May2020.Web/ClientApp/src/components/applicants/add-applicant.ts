@@ -16,7 +16,7 @@ export class AddApplicant {
   countryOfOrigin: any = '';
   address: any = '';
   email: any = '';
-  age: number;
+  age?: number;
   hired: boolean = false;
   i18n: I18N;
   applicantService: ApplicantService;
@@ -64,6 +64,18 @@ export class AddApplicant {
 
 
   reset() {
+    var dirtyFormID = 'add-applicant-form';
+    var resetForm = <HTMLFormElement>document.getElementById(dirtyFormID);
+    if (resetForm) resetForm.reset();
+
+    this.name = '';
+    this.familyName = '';
+    this.address = '';
+    this.countryOfOrigin = '';
+    this.email = '';
+    this.hired = false;
+    this.age = null;
+
     this.controller.reset();
   }
 
@@ -78,6 +90,7 @@ export class AddApplicant {
             name: this.name,
             familyName: this.familyName,
             address: this.address,
+            countryOfOrigin: this.countryOfOrigin,
             email: this.email,
             age: this.age,
             hired: this.hired

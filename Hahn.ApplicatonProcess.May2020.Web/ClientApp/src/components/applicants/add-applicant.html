@@ -18,7 +18,7 @@
           </ul>
 
 
-          <form>
+          <form id="add-applicant-form">
             <fieldset class="form-group">
               <input class="form-control form-control-lg" type="text" placeholder="Name" value.bind="name & validate">
             </fieldset>
@@ -32,10 +32,10 @@
               <input class="form-control form-control-lg" type="text" placeholder="country Of Origin" value.bind="countryOfOrigin & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Email" value.bind="email & validate">
+              <input class="form-control form-control-lg" type="email" placeholder="Email" value.bind="email & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Age" value.bind="age & validate">
+              <input class="form-control form-control-lg" type="number" placeholder="Age" value.bind="age & validate">
             </fieldset>
             
 
@@ -46,7 +46,7 @@
             <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="submit()" disabled.bind="!canSave">
               Send
             </button>
-            <button class="btn btn-lg btn-primary pull-xs-right" type="reset" disabled.bind="!canReset">
+            <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="reset()" type="button" disabled.bind="!canReset">
               Reset
             </button>
           </form>

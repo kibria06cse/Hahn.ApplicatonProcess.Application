@@ -17,7 +17,8 @@ export class App {
 
 
     config.map([
-      { route: ['', 'home'], name: 'login', moduleId: PLATFORM.moduleName('components/auth/authcomponent') }
+      { route: ['', 'home'], name: 'login', moduleId: PLATFORM.moduleName('components/auth/authcomponent') },
+      { route: ['register'], name: 'register', moduleId: PLATFORM.moduleName('components/auth/authcomponent') }
       //{ route: 'users', name: 'users', moduleId: 'users/index', nav: true, title: 'Users' },
       //{ route: 'users/:id/detail', name: 'userDetail', moduleId: 'users/detail' },
       //{ route: 'files/*path', name: 'files', moduleId: 'files/index', nav: 0, title: 'Files', href: '#files' }

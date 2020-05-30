@@ -1,4 +1,4 @@
-export class Headerlayout {
+export class HeaderLayout {
   message: string;
 
   constructor() {

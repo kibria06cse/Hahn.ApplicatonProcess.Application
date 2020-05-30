@@ -1,19 +1,8 @@
-//export class Authcomponent {
-//  message: string;
-
-//  constructor() {
-//    this.message = 'Hello world';
-//  }
-//}
-
 import { inject, autoinject } from 'aurelia-dependency-injection';
 
 import { Router, activationStrategy } from 'aurelia-router';
 import { ValidationControllerFactory, ValidationRules, ValidationController } from 'aurelia-validation';
 import { BootstrapFormRenderer } from '../../shared/bootstrap-form-renderer';
-//import { UserService } from '../../shared/services/userservice';
-//import { SharedState } from '../../shared/state/sharedstate';
-
 
 @inject(ValidationControllerFactory)
 
@@ -51,7 +40,6 @@ export class AuthComponent {
   }
 
   get canSave() {
-    debugger
     if (this.type === 'login') {
       return this.email !== '' && this.password !== '' && this.password.length >= 8;
     } else {

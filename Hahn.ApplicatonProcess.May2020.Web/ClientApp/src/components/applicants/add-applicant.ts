@@ -2,9 +2,9 @@ import { ValidationControllerFactory, ValidationRules, ValidationController } fr
 import { Router, activationStrategy } from "aurelia-router";
 import { BootstrapFormRenderer } from "../../shared/bootstrap-form-renderer";
 import { inject, autoinject } from 'aurelia-dependency-injection';
+import { I18N  } from "aurelia-i18n";
 
-@inject(ValidationControllerFactory)
-
+@inject(ValidationControllerFactory, I18N, Router)
 export class AddApplicant {
   controller: ValidationController;
   errors: any;
@@ -16,17 +16,22 @@ export class AddApplicant {
   email: any;
   age: any;
   hired: any;
+  i18n: I18N;
 
-  constructor(controllerFactory: ValidationControllerFactory, router: Router) {
+
+  constructor(controllerFactory: ValidationControllerFactory, i18n: I18N, router: Router) {
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
+    this.i18n = i18n;
 
     this.router = router;
 
+    debugger
+
     ValidationRules
-      .ensure('name').required().minLength(8)
-      .ensure('familyName').required().minLength(8)
-      .ensure('address').required().minLength(8)
+      .ensure('name').required().minLength(5).withMessage(this.i18n.tr('title'))
+      .ensure('familyName').required().minLength(5)
+      .ensure('address').required().minLength(10)
       .ensure('email').required().email()
       .ensure('age').required().between(20, 60)
       .ensure('hired').required()

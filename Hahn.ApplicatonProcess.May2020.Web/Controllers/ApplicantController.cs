@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ApplicantController : ControllerBase
     {
         private readonly ILogger<ApplicantController> _logger;
@@ -43,9 +43,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
 
-        public async Task<IActionResult> Post([FromBody]ApplicantDto model)
+        public async Task<IActionResult> Post(ApplicantDto model)
         {
             try
             {

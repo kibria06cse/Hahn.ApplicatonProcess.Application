@@ -48,7 +48,6 @@ var ApiService = (function () {
         if (body === void 0) { body = {}; }
         var options = {
             method: 'POST',
-            headers: this.setHeaders(),
             body: json(body)
         };
         return this.http.fetch("" + config.api_url + path, options)

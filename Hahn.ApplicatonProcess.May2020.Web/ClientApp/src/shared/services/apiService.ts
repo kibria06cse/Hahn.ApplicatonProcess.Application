@@ -58,7 +58,7 @@ export class ApiService {
   post(path, body = {}) {
     const options = {
       method: 'POST',
-      headers: this.setHeaders(),
+      //headers: this.setHeaders(),
       body: json(body)
     };
     return this.http.fetch(`${config.api_url}${path}`, options)

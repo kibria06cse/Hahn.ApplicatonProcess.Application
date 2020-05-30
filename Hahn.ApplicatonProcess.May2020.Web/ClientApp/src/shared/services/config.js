@@ -1,4 +1,4 @@
 export var config = {
-    api_url: 'http://localhost:44334'
+    api_url: 'https://localhost:44334/api'
 };
 //# sourceMappingURL=config.js.map

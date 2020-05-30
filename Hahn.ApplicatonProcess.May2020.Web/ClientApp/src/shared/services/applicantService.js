@@ -18,7 +18,7 @@ var ApplicantService = (function () {
             .then(function (data) { return data; });
     };
     ApplicantService.prototype.create = function (applicant) {
-        return this.apiService.post('/Applicant', { applicant: applicant })
+        return this.apiService.post('/Applicant', { model: applicant })
             .then(function (data) {
             return data;
         });

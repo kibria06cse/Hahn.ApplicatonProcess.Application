@@ -33,7 +33,15 @@ namespace Hahn.ApplicatonProcess.May2020.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("https://localhost:44334",
+            //                                "http://localhost:8080");
+            //        });
+            //});
 
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
@@ -99,12 +107,12 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             
             app.UseStaticFiles();
            
-            app.UseCors(builder => builder
-              .AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader()
-              //.AllowCredentials()
-              );
+            //app.UseCors(builder => builder
+            //  .AllowAnyOrigin()
+            //  .AllowAnyMethod()
+            //  .AllowAnyHeader()
+            //  //.AllowCredentials()
+            //  );
 
             app.UseSpaStaticFiles();
             app.UseSpa(spa =>
@@ -115,6 +123,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                 if (env.IsDevelopment())
                 {
                     //spa.UseAureliaCliServer(npmScript: "start");
+                    spa.UseAureliaCliServer();
                     spa.Options.StartupTimeout = TimeSpan.FromSeconds(200);
                 }
             });

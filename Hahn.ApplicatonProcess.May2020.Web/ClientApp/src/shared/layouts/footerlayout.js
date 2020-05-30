@@ -1,8 +1,8 @@
-var Footerlayout = (function () {
-    function Footerlayout() {
+var FooterLayout = (function () {
+    function FooterLayout() {
         this.message = 'Hello world';
     }
-    return Footerlayout;
+    return FooterLayout;
 }());
-export { Footerlayout };
+export { FooterLayout };
 //# sourceMappingURL=footerlayout.js.map

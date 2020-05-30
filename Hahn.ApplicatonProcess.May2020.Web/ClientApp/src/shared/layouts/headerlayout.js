@@ -1,8 +1,8 @@
-var Headerlayout = (function () {
-    function Headerlayout() {
+var HeaderLayout = (function () {
+    function HeaderLayout() {
         this.message = 'Hello world';
     }
-    return Headerlayout;
+    return HeaderLayout;
 }());
-export { Headerlayout };
+export { HeaderLayout };
 //# sourceMappingURL=headerlayout.js.map

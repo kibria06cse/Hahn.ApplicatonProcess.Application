@@ -17,7 +17,7 @@ export function configure(aurelia) {
         return instance.setup({
             resources: resBundle,
             attributes: aliases,
-            lng: 'no',
+            lng: 'en',
             fallbackLng: 'en',
             debug: true,
             defaultNS: 'translation',

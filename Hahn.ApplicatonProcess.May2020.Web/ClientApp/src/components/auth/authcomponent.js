@@ -35,7 +35,6 @@ var AuthComponent = (function () {
     };
     Object.defineProperty(AuthComponent.prototype, "canSave", {
         get: function () {
-            debugger;
             if (this.type === 'login') {
                 return this.email !== '' && this.password !== '' && this.password.length >= 8;
             }

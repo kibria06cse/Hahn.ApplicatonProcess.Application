@@ -33,22 +33,11 @@ namespace Hahn.ApplicatonProcess.May2020.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddCors(options =>
-            //{
-            //    options.AddDefaultPolicy(
-            //        builder =>
-            //        {
-            //            builder.WithOrigins("https://localhost:44334",
-            //                                "http://localhost:8080");
-            //        });
-            //});
-
             services.AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
 
-            services.AddControllers();
-
             services.AddMediatR(typeof(CreateApplicantCommandHandler).GetTypeInfo().Assembly);
+
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -72,14 +61,16 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                     }
                 });
             });
-            
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            // In production, the Angular files
+
             services.AddSpaStaticFiles(
                 configuration =>
                 {
                     configuration.RootPath = "ClientApp/dist";
                 });
-
-           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,8 +83,6 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
 
             app.UseSwagger();
 
@@ -103,18 +92,32 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hahn.ApplicatonProcess.Application API V1");
             });
-            
-            
+
+
             app.UseStaticFiles();
-           
-            //app.UseCors(builder => builder
-            //  .AllowAnyOrigin()
-            //  .AllowAnyMethod()
-            //  .AllowAnyHeader()
-            //  //.AllowCredentials()
-            //  );
+
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
             app.UseSpaStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
+            });
+
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -122,21 +125,8 @@ namespace Hahn.ApplicatonProcess.May2020.Web
 
                 if (env.IsDevelopment())
                 {
-                    //spa.UseAureliaCliServer(npmScript: "start");
-                    spa.UseAureliaCliServer();
-                    spa.Options.StartupTimeout = TimeSpan.FromSeconds(200);
+                    spa.UseAureliaCliServer(npmScript: "start");
                 }
-            });
-
-
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
             });
         }
     }

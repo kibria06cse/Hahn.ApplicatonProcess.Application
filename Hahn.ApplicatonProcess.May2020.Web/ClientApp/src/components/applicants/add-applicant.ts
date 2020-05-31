@@ -26,7 +26,7 @@ export class AddApplicant {
   i18n: I18N;
   applicantService: ApplicantService;
   dialogService: DialogService;
-
+  sending: boolean = false;
 
   constructor(controllerFactory: ValidationControllerFactory, i18n: I18N, router: Router, applicantService: ApplicantService, dialogService: DialogService) {
     this.controller = controllerFactory.createForCurrentScope();
@@ -114,12 +114,16 @@ export class AddApplicant {
           applicant.age = this.age;
           applicant.hired = this.hired;
 
+          this.sending = true;
+
           this.applicantService.create(applicant)
             .then(data => {
               this.router.navigateToRoute('applicant-submit-success')
             })
 
             .catch(promise => {
+              this.sending = false;
+
               this.dialogService.open({ viewModel: InfoModal, model: promise.message, lock: false }).whenClosed(response => {
                 if (!response.wasCancelled) {
 

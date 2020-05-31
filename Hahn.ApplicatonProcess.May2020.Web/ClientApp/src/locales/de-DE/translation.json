@@ -28,6 +28,7 @@
       "Hired": "Gemietet",
       "SendButtonText": "Senden",
       "ResetButtonText": "Zurücksetzen",
+      "SendingText": "Senden",
       "ErrorMessages": {
         "Name": "Der Name muss mindestens 5 Zeichen haben",
         "FamilyName": "Der Familienname muss mindestens 5 Zeichen haben",

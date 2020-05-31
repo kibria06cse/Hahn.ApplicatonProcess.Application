@@ -47,6 +47,10 @@
             </button>
             <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="reset()" type="button" disabled.bind="!canReset"  t="AddApplicant.Form.ResetButtonText">
             </button>
+
+            <div if.bind="sending">
+              <span t="AddApplicant.Form.SendingText"></span>
+            </div>
           </form>
         </div>
 

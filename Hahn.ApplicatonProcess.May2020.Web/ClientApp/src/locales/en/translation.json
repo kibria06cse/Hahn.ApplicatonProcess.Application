@@ -1,3 +1,33 @@
 {
-  "title": "Hello World!"
+  "title": "Hei Verden from English!",
+  "Layout": {
+    "Header": {
+      "Menu": {
+        "Home": "Home"
+      },
+      "Search": {
+        "InputText": "Search",
+        "ButtonText": "Search"
+      }
+    },
+    "Footer": {
+      "Privacy": "Privacy",
+      "Terms": "Terms",
+      "Support": "Support"
+    }
+  },
+  "AddApplicant": {
+    "Header": "Add Applicant",
+    "Form": {
+      "Name": "Name G",
+      "FamilyName": "Family Name",
+      "Address": "Address",
+      "CountryOfOrigin": "Country Of Origin",
+      "Email": "Email",
+      "Age": "Age",
+      "Hired": "Name",
+      "SendButtonText": "Send",
+      "ResetButtonText": "Reset G"
+    }
+  }
 }

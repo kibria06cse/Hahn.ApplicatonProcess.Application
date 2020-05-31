@@ -9,7 +9,7 @@
       <div class="row">
 
         <div class="col-md-6 offset-md-3 col-xs-12">
-          <h1 class="text-xs-center">Add Applicant</h1>
+          <h1 class="text-xs-center" t="AddApplicant.Header"></h1>
          
           <ul class="error-messages" if.bind="controller.errors">
             <li repeat.for="error of controller.errors">
@@ -20,34 +20,33 @@
 
           <form id="add-applicant-form">
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Name" value.bind="name & validate">
+              <input class="form-control form-control-lg" type="text" t="[placeholder]AddApplicant.Form.Name" value.bind="name & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Family Name" value.bind="familyName & validate">
+              <input class="form-control form-control-lg" type="text" t="[placeholder]AddApplicant.Form.FamilyName"  value.bind="familyName & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Address" value.bind="address & validate">
+              <input class="form-control form-control-lg" type="text" t="[placeholder]AddApplicant.Form.Address" value.bind="address & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="country Of Origin" value.bind="countryOfOrigin & validate">
+              <input class="form-control form-control-lg" type="text" t="[placeholder]AddApplicant.Form.CountryOfOrigin" value.bind="countryOfOrigin & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="email" placeholder="Email" value.bind="email & validate">
+              <input class="form-control form-control-lg" type="email" t="[placeholder]AddApplicant.Form.Email" value.bind="email & validate">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="number" placeholder="Age" value.bind="age & validate">
+              <input class="form-control form-control-lg" type="number" t="[placeholder]AddApplicant.Form.Age" value.bind="age & validate">
             </fieldset>
             
 
             <fieldset class="form-group form-check">
               <input type="checkbox" class="form-check-input" checked.bind="hired">
-              <label class="form-check-label" for="exampleCheck1">Hired</label>
+              <label class="form-check-label" for="exampleCheck1" t="AddApplicant.Form.Hired">Hired</label>
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="submit()" disabled.bind="!canSave">
-              Send
+            <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="submit()" disabled.bind="!canSave" t="AddApplicant.Form.SendButtonText">
+              
             </button>
-            <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="reset()" type="button" disabled.bind="!canReset">
-              Reset
+            <button class="btn btn-lg btn-primary pull-xs-right" click.trigger="reset()" type="button" disabled.bind="!canReset"  t="AddApplicant.Form.ResetButtonText">
             </button>
           </form>
         </div>

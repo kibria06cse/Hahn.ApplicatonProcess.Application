@@ -29,7 +29,7 @@ export function configure(aurelia: Aurelia) {
       return instance.setup({
         resources: resBundle,
         attributes: aliases,
-        lng: 'no',
+        lng: 'de-DE',
         fallbackLng: 'en',
         debug: true,
         defaultNS: 'translation',

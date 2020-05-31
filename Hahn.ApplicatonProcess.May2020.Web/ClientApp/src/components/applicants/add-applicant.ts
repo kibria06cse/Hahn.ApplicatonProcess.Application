@@ -5,8 +5,11 @@ import { inject, autoinject } from 'aurelia-dependency-injection';
 import { I18N } from "aurelia-i18n";
 import { ApplicantService } from "../../shared/services/applicantService";
 import { Applicant } from "../../shared/models/applicant";
+import { DialogService } from 'aurelia-dialog';
+import { ConfirmationModal } from "../../shared/components/confirmation-modal";
 
-@inject(ValidationControllerFactory, I18N, Router, ApplicantService)
+
+@inject(ValidationControllerFactory, I18N, Router, ApplicantService, DialogService)
 export class AddApplicant {
   controller: ValidationController;
   errors: any;
@@ -21,15 +24,18 @@ export class AddApplicant {
   hired: boolean = false;
   i18n: I18N;
   applicantService: ApplicantService;
+  dialogService: DialogService;
 
 
-  constructor(controllerFactory: ValidationControllerFactory, i18n: I18N, router: Router, applicantService: ApplicantService) {
+  constructor(controllerFactory: ValidationControllerFactory, i18n: I18N, router: Router, applicantService: ApplicantService, dialogService: DialogService) {
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer());
     this.i18n = i18n;
 
     this.router = router;
     this.applicantService = applicantService;
+
+    this.dialogService = dialogService;
 
     ValidationRules
       .ensure('name').required().withMessage(this.i18n.tr('other-translations:title')).minLength(5).withMessage(this.i18n.tr('title'))
@@ -65,19 +71,30 @@ export class AddApplicant {
 
 
   reset() {
-    var dirtyFormID = 'add-applicant-form';
-    var resetForm = <HTMLFormElement>document.getElementById(dirtyFormID);
-    if (resetForm) resetForm.reset();
+    this.dialogService.open({ viewModel: ConfirmationModal, model: new Applicant(), lock: false }).whenClosed(response => {
+      if (!response.wasCancelled) {
+        console.log('good - ', response.output);
 
-    this.name = '';
-    this.familyName = '';
-    this.address = '';
-    this.countryOfOrigin = '';
-    this.email = '';
-    this.hired = false;
-    this.age = null;
 
-    this.controller.reset();
+        var dirtyFormID = 'add-applicant-form';
+        var resetForm = <HTMLFormElement>document.getElementById(dirtyFormID);
+        if (resetForm) resetForm.reset();
+
+        this.name = '';
+        this.familyName = '';
+        this.address = '';
+        this.countryOfOrigin = '';
+        this.email = '';
+        this.hired = false;
+        this.age = null;
+
+        this.controller.reset();
+
+      } else {
+        console.log('bad');
+      }
+      console.log(response.output);
+    });
   }
 
   submit() {

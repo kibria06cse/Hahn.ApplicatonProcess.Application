@@ -32,6 +32,7 @@
     <Folder Include="ClientApp\src\components\auth\" />
     <Folder Include="ClientApp\src\components\applicants\" />
     <Folder Include="ClientApp\src\shared\layouts\" />
+    <Folder Include="ClientApp\src\shared\components\" />
   </ItemGroup>
 
 

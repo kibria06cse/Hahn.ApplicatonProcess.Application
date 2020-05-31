@@ -40,7 +40,7 @@ export function configure(aurelia: Aurelia) {
       });
     })
     .plugin(PLATFORM.moduleName('aurelia-validation'))
-    ;
+    .plugin(PLATFORM.moduleName('aurelia-dialog'));
 
   aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
 }

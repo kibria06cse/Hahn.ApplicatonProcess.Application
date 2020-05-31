@@ -27,7 +27,8 @@ export function configure(aurelia) {
             ]
         });
     })
-        .plugin(PLATFORM.moduleName('aurelia-validation'));
+        .plugin(PLATFORM.moduleName('aurelia-validation'))
+        .plugin(PLATFORM.moduleName('aurelia-dialog'));
     aurelia.start().then(function () { return aurelia.setRoot(PLATFORM.moduleName('app')); });
 }
 //# sourceMappingURL=main.js.map

@@ -39,12 +39,13 @@ export class AddApplicant {
     this.dialogService = dialogService;
 
     ValidationRules
-      .ensure('name').required().withMessage(this.i18n.tr('other-translations:title')).minLength(5).withMessage(this.i18n.tr('title'))
-      .ensure('familyName').required().minLength(5)
-      .ensure('address').required().minLength(10)
-      .ensure('countryOfOrigin').required()
-      .ensure('email').required().email()
-      .ensure('age').required().between(20, 60)
+      .ensure('name').required().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Name'))
+      //.withMessage(this.i18n.tr('other-translations:title')).minLength(5).withMessage(this.i18n.tr('title'))
+      .ensure('familyName').required().minLength(5).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.FamilyName'))
+      .ensure('address').required().minLength(10).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Address'))
+      .ensure('countryOfOrigin').required().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.CountryOfOrigin'))
+      .ensure('email').required().email().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Email'))
+      .ensure('age').required().between(20, 60).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Age'))
       .ensure('hired').required()
       //.when((auth) => auth.type === 'register')
       .on(this);

@@ -51,9 +51,13 @@ var BootstrapFormRenderer = (function () {
         if (!formGroup) {
             return;
         }
+        var formControl = element.parentNode.firstElementChild;
         if (result.valid) {
             if (formGroup.classList.contains('has-success')) {
                 formGroup.classList.remove('has-success');
+                if (formControl) {
+                    formControl.classList.remove('is-valid');
+                }
             }
         }
         else {
@@ -63,6 +67,9 @@ var BootstrapFormRenderer = (function () {
                 if (formGroup.querySelectorAll('.help-block.validation-message').length === 0) {
                     formGroup.classList.remove('has-error');
                 }
+            }
+            if (formControl) {
+                formControl.classList.remove('is-invalid');
             }
         }
     };

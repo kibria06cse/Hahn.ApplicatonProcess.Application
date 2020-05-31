@@ -17,7 +17,7 @@
   "AddApplicant": {
     "Header": "Add Applicant",
     "Form": {
-      "Name": "Name G",
+      "Name": "Name",
       "FamilyName": "Family Name",
       "Address": "Address",
       "CountryOfOrigin": "Country Of Origin",
@@ -25,7 +25,7 @@
       "Age": "Age",
       "Hired": "Name",
       "SendButtonText": "Send",
-      "ResetButtonText": "Reset G"
+      "ResetButtonText": "Reset"
     }
   }
 }

@@ -27,7 +27,15 @@
       "Age": "Alter",
       "Hired": "Gemietet",
       "SendButtonText": "Senden",
-      "ResetButtonText": "Zurücksetzen"
+      "ResetButtonText": "Zurücksetzen",
+      "ErrorMessages": {
+        "Name": "Der Name muss mindestens 5 Zeichen haben",
+        "FamilyName": "Der Familienname muss mindestens 5 Zeichen haben",
+        "Address": "Die Adresse muss mindestens 5 Zeichen haben ",
+        "CountryOfOrigin": "Herkunftsland ist erforderlich",
+        "Email": "Eine gültige E-Mail-Adresse ist erforderlich",
+        "Age": "Das Alter muss zwischen 20 und 60 Jahren liegen"
+      }
     }
   },
   "ApplicantSubmitSucessMessage": "Bewerber erfolgreich erstellt"

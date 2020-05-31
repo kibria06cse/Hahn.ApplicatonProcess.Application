@@ -32,12 +32,12 @@ var AddApplicant = (function () {
         this.applicantService = applicantService;
         this.dialogService = dialogService;
         ValidationRules
-            .ensure('name').required().withMessage(this.i18n.tr('other-translations:title')).minLength(5).withMessage(this.i18n.tr('title'))
-            .ensure('familyName').required().minLength(5)
-            .ensure('address').required().minLength(10)
-            .ensure('countryOfOrigin').required()
-            .ensure('email').required().email()
-            .ensure('age').required().between(20, 60)
+            .ensure('name').required().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Name'))
+            .ensure('familyName').required().minLength(5).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.FamilyName'))
+            .ensure('address').required().minLength(10).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Address'))
+            .ensure('countryOfOrigin').required().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.CountryOfOrigin'))
+            .ensure('email').required().email().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Email'))
+            .ensure('age').required().between(20, 60).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Age'))
             .ensure('hired').required()
             .on(this);
     }
@@ -57,7 +57,7 @@ var AddApplicant = (function () {
     });
     Object.defineProperty(AddApplicant.prototype, "canReset", {
         get: function () {
-            return this.name !== '' && this.familyName !== '' && this.address !== '' && this.email !== '' && this.age;
+            return this.name !== '' || this.familyName !== '' || this.address !== '' || this.email !== '' || this.age > 0 || this.countryOfOrigin !== '';
         },
         enumerable: true,
         configurable: true
@@ -91,7 +91,6 @@ var AddApplicant = (function () {
         this.errors = null;
         this.controller.validate()
             .then(function (result) {
-            debugger;
             if (result.valid) {
                 var applicant = new Applicant();
                 applicant.name = _this.name;

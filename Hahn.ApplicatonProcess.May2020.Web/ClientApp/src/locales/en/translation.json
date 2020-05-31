@@ -27,7 +27,15 @@
       "Age": "Age",
       "Hired": "Name",
       "SendButtonText": "Send",
-      "ResetButtonText": "Reset"
+      "ResetButtonText": "Reset",
+      "ErrorMessages": {
+        "Name": "Name must be at least 5 charracter",
+        "FamilyName": "Family Name must be at least 5 charracter",
+        "Address": "Address must be at least 105 charracter",
+        "CountryOfOrigin": "Country of origin is required",
+        "Email": "Email must be a valid email",
+        "Age": "Age must be between 20 and 60"
+      }
     }
   },
   "ApplicantSubmitSucessMessage": "Applicant created successfully"

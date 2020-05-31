@@ -37,7 +37,7 @@ var AddApplicant = (function () {
             .ensure('address').required().minLength(10).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Address'))
             .ensure('countryOfOrigin').required().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.CountryOfOrigin'))
             .ensure('email').required().email().withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Email'))
-            .ensure('age').required().between(20, 60).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Age'))
+            .ensure('age').required().between(19, 61).withMessage(this.i18n.tr('AddApplicant.Form.ErrorMessages.Age'))
             .ensure('hired').required()
             .on(this);
     }

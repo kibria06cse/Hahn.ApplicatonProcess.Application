@@ -67,7 +67,7 @@ export class AddApplicant {
 
 
   get canReset() {
-    return this.name !== '' && this.familyName !== '' && this.address !== '' && this.email !== '' && this.age;
+    return this.name !== '' || this.familyName !== '' || this.address !== '' || this.email !== '' || this.age>0 || this.countryOfOrigin !=='' ;
   }
 
 
@@ -103,7 +103,6 @@ export class AddApplicant {
 
     this.controller.validate()
       .then(result => {
-        debugger
         if (result.valid) {
           var applicant = new Applicant()
           applicant.name = this.name;
@@ -117,19 +116,6 @@ export class AddApplicant {
           this.applicantService.create(applicant)
             .then(data => {
               this.router.navigateToRoute('applicant-submit-success')
-
-              //if (data.status == true) {
-              //}
-              //else {
-              //  this.dialogService.open({ viewModel: InfoModal, model: data.message, lock: false }).whenClosed(response => {
-              //    if (!response.wasCancelled) {
-
-              //    } else {
-              //      console.log('bad');
-              //    }
-              //    console.log(response.output);
-              //  });
-              //}
             })
 
             .catch(promise => {

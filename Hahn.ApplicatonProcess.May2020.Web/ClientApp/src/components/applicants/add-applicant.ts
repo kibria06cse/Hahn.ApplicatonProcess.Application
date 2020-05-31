@@ -4,6 +4,7 @@ import { BootstrapFormRenderer } from "../../shared/bootstrap-form-renderer";
 import { inject, autoinject } from 'aurelia-dependency-injection';
 import { I18N } from "aurelia-i18n";
 import { ApplicantService } from "../../shared/services/applicantService";
+import { Applicant } from "../../shared/models/applicant";
 
 @inject(ValidationControllerFactory, I18N, Router, ApplicantService)
 export class AddApplicant {
@@ -86,15 +87,14 @@ export class AddApplicant {
       .then(result => {
         debugger
         if (result.valid) {
-          const applicant = {
-            name: this.name,
-            familyName: this.familyName,
-            address: this.address,
-            countryOfOrigin: this.countryOfOrigin,
-            email: this.email,
-            age: this.age,
-            hired: this.hired
-          };
+          var applicant = new Applicant()
+          applicant.name = this.name;
+          applicant.familyName = this.familyName;
+          applicant.address = this.address;
+          applicant.countryOfOrigin = this.countryOfOrigin;
+          applicant.eMailAddress = this.email;
+          applicant.age = this.age;
+          applicant.hired = this.hired;
 
           this.applicantService.create(applicant)
             .then(data => this.router.navigateToRoute('home'))

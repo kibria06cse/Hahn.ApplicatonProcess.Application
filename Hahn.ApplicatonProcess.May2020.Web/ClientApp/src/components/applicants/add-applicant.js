@@ -13,6 +13,7 @@ import { BootstrapFormRenderer } from "../../shared/bootstrap-form-renderer";
 import { inject } from 'aurelia-dependency-injection';
 import { I18N } from "aurelia-i18n";
 import { ApplicantService } from "../../shared/services/applicantService";
+import { Applicant } from "../../shared/models/applicant";
 var AddApplicant = (function () {
     function AddApplicant(controllerFactory, i18n, router, applicantService) {
         this.name = '';
@@ -78,15 +79,14 @@ var AddApplicant = (function () {
             .then(function (result) {
             debugger;
             if (result.valid) {
-                var applicant = {
-                    name: _this.name,
-                    familyName: _this.familyName,
-                    address: _this.address,
-                    countryOfOrigin: _this.countryOfOrigin,
-                    email: _this.email,
-                    age: _this.age,
-                    hired: _this.hired
-                };
+                var applicant = new Applicant();
+                applicant.Name = _this.name;
+                applicant.FamilyName = _this.familyName;
+                applicant.Address = _this.address;
+                applicant.CountryOfOrigin = _this.countryOfOrigin;
+                applicant.EMailAddress = _this.email;
+                applicant.Age = _this.age;
+                applicant.Hired = _this.hired;
                 _this.applicantService.create(applicant)
                     .then(function (data) { return _this.router.navigateToRoute('home'); })
                     .catch(function (promise) {

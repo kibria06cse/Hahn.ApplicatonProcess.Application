@@ -38,6 +38,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
 
             services.AddMediatR(typeof(CreateApplicantCommandHandler).GetTypeInfo().Assembly);
 
+           
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -62,9 +63,14 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                 });
             });
 
-            services.AddControllersWithViews();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddRazorPages();
-            // In production, the Angular files
+
+            services.Configure<ApiBehaviorOptions>(o =>
+            {
+                o.InvalidModelStateResponseFactory = actionContext =>
+                    new BadRequestObjectResult(actionContext.ModelState);
+            });
 
             services.AddSpaStaticFiles(
                 configuration =>

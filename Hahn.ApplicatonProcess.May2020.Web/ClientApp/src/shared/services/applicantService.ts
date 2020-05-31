@@ -1,5 +1,6 @@
 ﻿import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from './apiservice';
+import { Applicant } from '../models/applicant';
 
 
 @inject(ApiService)
@@ -15,15 +16,15 @@ export class ApplicantService {
       .then(data => data)
   }
 
-  create(applicant) {
-    return this.apiService.post('/Applicant', {model: applicant })
+  create(applicant: Applicant) {
+    return this.apiService.post('/Applicant', applicant)
       .then(data => {
         return data;
       });
   }
 
   update(applicant) {
-    return this.apiService.put('/Applicant', { applicant })
+    return this.apiService.put('/Applicant', applicant )
       .then(data => {
         return data;
       });

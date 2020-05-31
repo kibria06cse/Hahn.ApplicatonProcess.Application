@@ -10,7 +10,7 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Dtos
     public class ApplicantDto
     {
         public int ID { get; set; }
-        [Required, StringLength(100, MinimumLength = 5)]
+        [StringLength(100, MinimumLength = 5)]
         public string Name { get; set; }
         [StringLength(100, MinimumLength = 5)]
         public string FamilyName { get; set; }
@@ -20,7 +20,7 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Dtos
         public string CountryOfOrigin { get; set; }
         [EmailAddress]
         public string EMailAdress { get; set; }
-        [Range(20,60)]
+        //[Range(20,60)]
         public int Age { get; set; }
         public bool Hired { get; set; }
 

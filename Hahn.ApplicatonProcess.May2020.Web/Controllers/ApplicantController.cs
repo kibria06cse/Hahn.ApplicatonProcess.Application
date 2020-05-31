@@ -45,7 +45,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers
         [HttpPost]
         //[ProducesResponseType(StatusCodes.Status201Created)]
 
-        public async Task<IActionResult> Post(ApplicantDto model)
+        public async Task<IActionResult> Post([FromBody]ApplicantDto model)
         {
             try
             {

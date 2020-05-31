@@ -1,7 +1,15 @@
-export class InfoModal {
-  message: string;
+import { DialogController } from "aurelia-dialog";
 
-  constructor() {
-    this.message = 'Hello world';
+export class InfoModal {
+  static inject = [DialogController];
+
+  message: string;
+  controller: DialogController;
+
+  constructor(controller: DialogController) {
+    this.controller = controller;
+  }
+  activate(message) {
+    this.message = message;
   }
 }

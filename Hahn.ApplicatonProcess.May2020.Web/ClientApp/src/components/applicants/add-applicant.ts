@@ -7,6 +7,7 @@ import { ApplicantService } from "../../shared/services/applicantService";
 import { Applicant } from "../../shared/models/applicant";
 import { DialogService } from 'aurelia-dialog';
 import { ConfirmationModal } from "../../shared/components/confirmation-modal";
+import { InfoModal } from "../../shared/components/info-modal";
 
 
 @inject(ValidationControllerFactory, I18N, Router, ApplicantService, DialogService)
@@ -114,9 +115,36 @@ export class AddApplicant {
           applicant.hired = this.hired;
 
           this.applicantService.create(applicant)
-            .then(data => this.router.navigateToRoute('applicant-submit-success'))
+            .then(data => {
+              this.router.navigateToRoute('applicant-submit-success')
+
+              //if (data.status == true) {
+              //}
+              //else {
+              //  this.dialogService.open({ viewModel: InfoModal, model: data.message, lock: false }).whenClosed(response => {
+              //    if (!response.wasCancelled) {
+
+              //    } else {
+              //      console.log('bad');
+              //    }
+              //    console.log(response.output);
+              //  });
+              //}
+            })
+
             .catch(promise => {
-              promise.then(err => this.errors = err.errors)
+              this.dialogService.open({ viewModel: InfoModal, model: promise.message, lock: false }).whenClosed(response => {
+                if (!response.wasCancelled) {
+
+                } else {
+                  console.log('bad');
+                }
+                console.log(response.output);
+              });
+              //promise.then(err => {
+              
+              //})
+
             });
         }
       })

@@ -2,13 +2,17 @@
 import { inject } from 'aurelia-dependency-injection';
 import * as qs from 'querystringify';
 import { config } from './config';
+import { InfoModal } from '../components/info-modal';
+import { DialogService } from 'aurelia-dialog';
 
-@inject(HttpClient)
+@inject(HttpClient, DialogService)
 export class ApiService {
   http: HttpClient;
+    dialogService: DialogService;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, dialogService: DialogService) {
     this.http = http;
+    this.dialogService = dialogService;
   }
 
   setHeaders() {
@@ -44,7 +48,7 @@ export class ApiService {
   }
 
 
-  post(path, body = {}) {
+   post(path, body = {}) {
     const options = {
       method: 'POST',
       //headers: this.setHeaders(),
@@ -68,7 +72,11 @@ export class ApiService {
   }
 
   returnStatus(response) {
-    if (response.status == true) {
+    if (response) {
+      if (response.status == false) {
+       throw response;
+      }
+
       return response.json();
     }
 
@@ -77,6 +85,6 @@ export class ApiService {
 
   parseError(error) {
     if (!(error instanceof Error))
-      return new Promise((resolve, reject) => reject(error.json()))
+      return new Promise((resolve, reject) => reject(error))
   }
 }

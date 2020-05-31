@@ -18,13 +18,13 @@ var ApplicantService = (function () {
             .then(function (data) { return data; });
     };
     ApplicantService.prototype.create = function (applicant) {
-        return this.apiService.post('/Applicant', { model: applicant })
+        return this.apiService.post('/Applicant', applicant)
             .then(function (data) {
             return data;
         });
     };
     ApplicantService.prototype.update = function (applicant) {
-        return this.apiService.put('/Applicant', { applicant: applicant })
+        return this.apiService.put('/Applicant', applicant)
             .then(function (data) {
             return data;
         });

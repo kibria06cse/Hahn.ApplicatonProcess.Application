@@ -80,13 +80,13 @@ var AddApplicant = (function () {
             debugger;
             if (result.valid) {
                 var applicant = new Applicant();
-                applicant.Name = _this.name;
-                applicant.FamilyName = _this.familyName;
-                applicant.Address = _this.address;
-                applicant.CountryOfOrigin = _this.countryOfOrigin;
-                applicant.EMailAddress = _this.email;
-                applicant.Age = _this.age;
-                applicant.Hired = _this.hired;
+                applicant.name = _this.name;
+                applicant.familyName = _this.familyName;
+                applicant.address = _this.address;
+                applicant.countryOfOrigin = _this.countryOfOrigin;
+                applicant.eMailAddress = _this.email;
+                applicant.age = _this.age;
+                applicant.hired = _this.hired;
                 _this.applicantService.create(applicant)
                     .then(function (data) { return _this.router.navigateToRoute('home'); })
                     .catch(function (promise) {

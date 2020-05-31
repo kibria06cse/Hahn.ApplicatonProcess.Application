@@ -4,7 +4,7 @@ import { DialogController } from 'aurelia-dialog';
 export class ConfirmationModal {
 
   static inject = [DialogController];
-  person = { firstName: '' };
+  //person = { firstName: '' };
 
   message: string;
   controller: DialogController;
@@ -12,8 +12,8 @@ export class ConfirmationModal {
   constructor(controller: DialogController) {
     this.controller = controller;
   }
-  activate(person) {
-    this.person = person;
+  activate(message) {
+    this.message = message;
   }
 }
 

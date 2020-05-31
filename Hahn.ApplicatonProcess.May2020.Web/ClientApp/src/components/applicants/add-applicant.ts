@@ -71,7 +71,7 @@ export class AddApplicant {
 
 
   reset() {
-    this.dialogService.open({ viewModel: ConfirmationModal, model: new Applicant(), lock: false }).whenClosed(response => {
+    this.dialogService.open({ viewModel: ConfirmationModal, model: 'Are you sure to reset?', lock: false }).whenClosed(response => {
       if (!response.wasCancelled) {
         console.log('good - ', response.output);
 
@@ -114,7 +114,7 @@ export class AddApplicant {
           applicant.hired = this.hired;
 
           this.applicantService.create(applicant)
-            .then(data => this.router.navigateToRoute('home'))
+            .then(data => this.router.navigateToRoute('applicant-submit-success'))
             .catch(promise => {
               promise.then(err => this.errors = err.errors)
             });

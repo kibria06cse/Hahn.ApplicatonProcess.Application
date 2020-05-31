@@ -43,17 +43,6 @@ export class ApiService {
       .catch(this.parseError)
   }
 
-  //post(path, body = {}) {
-  //  const options = {
-  //    method: 'POST',
-  //    headers: this.setHeaders(),
-  //    body: json(body)
-  //  };
-  //  return this.http.fetch(`${config.api_url}${path}`, options)
-  //    .then(response => response.json())
-  //    .then(this.returnStatus)
-  //    .catch(this.parseError)
-  //}
 
   post(path, body = {}) {
     const options = {
@@ -79,7 +68,7 @@ export class ApiService {
   }
 
   returnStatus(response) {
-    if (response.status >= 200 && response.status < 400) {
+    if (response.status == true) {
       return response.json();
     }
 

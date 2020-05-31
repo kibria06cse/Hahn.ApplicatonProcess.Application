@@ -9,9 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { inject } from 'aurelia-dependency-injection';
 import { ApiService } from './apiservice';
+import { DialogService } from 'aurelia-dialog';
 var ApplicantService = (function () {
-    function ApplicantService(apiService) {
+    function ApplicantService(apiService, dialogService) {
         this.apiService = apiService;
+        this.dialogService = dialogService;
     }
     ApplicantService.prototype.get = function (applicantId) {
         return this.apiService.get('/Applicant/', this.apiService)
@@ -21,6 +23,9 @@ var ApplicantService = (function () {
         return this.apiService.post('/Applicant', applicant)
             .then(function (data) {
             return data;
+        })
+            .catch(function (e) {
+            throw e;
         });
     };
     ApplicantService.prototype.update = function (applicant) {
@@ -30,8 +35,8 @@ var ApplicantService = (function () {
         });
     };
     ApplicantService = __decorate([
-        inject(ApiService),
-        __metadata("design:paramtypes", [ApiService])
+        inject(ApiService, DialogService),
+        __metadata("design:paramtypes", [ApiService, DialogService])
     ], ApplicantService);
     return ApplicantService;
 }());

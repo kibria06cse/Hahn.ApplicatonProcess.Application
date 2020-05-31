@@ -1,11 +1,10 @@
 import { DialogController } from 'aurelia-dialog';
 var ConfirmationModal = (function () {
     function ConfirmationModal(controller) {
-        this.person = { firstName: '' };
         this.controller = controller;
     }
-    ConfirmationModal.prototype.activate = function (person) {
-        this.person = person;
+    ConfirmationModal.prototype.activate = function (message) {
+        this.message = message;
     };
     ConfirmationModal.inject = [DialogController];
     return ConfirmationModal;

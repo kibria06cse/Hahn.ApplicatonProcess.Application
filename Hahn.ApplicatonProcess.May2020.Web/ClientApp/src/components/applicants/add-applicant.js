@@ -16,6 +16,7 @@ import { ApplicantService } from "../../shared/services/applicantService";
 import { Applicant } from "../../shared/models/applicant";
 import { DialogService } from 'aurelia-dialog';
 import { ConfirmationModal } from "../../shared/components/confirmation-modal";
+import { InfoModal } from "../../shared/components/info-modal";
 var AddApplicant = (function () {
     function AddApplicant(controllerFactory, i18n, router, applicantService, dialogService) {
         this.name = '';
@@ -62,27 +63,28 @@ var AddApplicant = (function () {
         configurable: true
     });
     AddApplicant.prototype.reset = function () {
-        this.dialogService.open({ viewModel: ConfirmationModal, model: new Applicant(), lock: false }).whenClosed(function (response) {
+        var _this = this;
+        this.dialogService.open({ viewModel: ConfirmationModal, model: 'Are you sure to reset?', lock: false }).whenClosed(function (response) {
             if (!response.wasCancelled) {
                 console.log('good - ', response.output);
+                var dirtyFormID = 'add-applicant-form';
+                var resetForm = document.getElementById(dirtyFormID);
+                if (resetForm)
+                    resetForm.reset();
+                _this.name = '';
+                _this.familyName = '';
+                _this.address = '';
+                _this.countryOfOrigin = '';
+                _this.email = '';
+                _this.hired = false;
+                _this.age = null;
+                _this.controller.reset();
             }
             else {
                 console.log('bad');
             }
             console.log(response.output);
         });
-        var dirtyFormID = 'add-applicant-form';
-        var resetForm = document.getElementById(dirtyFormID);
-        if (resetForm)
-            resetForm.reset();
-        this.name = '';
-        this.familyName = '';
-        this.address = '';
-        this.countryOfOrigin = '';
-        this.email = '';
-        this.hired = false;
-        this.age = null;
-        this.controller.reset();
     };
     AddApplicant.prototype.submit = function () {
         var _this = this;
@@ -100,9 +102,18 @@ var AddApplicant = (function () {
                 applicant.age = _this.age;
                 applicant.hired = _this.hired;
                 _this.applicantService.create(applicant)
-                    .then(function (data) { return _this.router.navigateToRoute('home'); })
+                    .then(function (data) {
+                    _this.router.navigateToRoute('applicant-submit-success');
+                })
                     .catch(function (promise) {
-                    promise.then(function (err) { return _this.errors = err.errors; });
+                    _this.dialogService.open({ viewModel: InfoModal, model: promise.message, lock: false }).whenClosed(function (response) {
+                        if (!response.wasCancelled) {
+                        }
+                        else {
+                            console.log('bad');
+                        }
+                        console.log(response.output);
+                    });
                 });
             }
         });

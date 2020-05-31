@@ -11,9 +11,11 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 import { inject } from 'aurelia-dependency-injection';
 import * as qs from 'querystringify';
 import { config } from './config';
+import { DialogService } from 'aurelia-dialog';
 var ApiService = (function () {
-    function ApiService(http) {
+    function ApiService(http, dialogService) {
         this.http = http;
+        this.dialogService = dialogService;
     }
     ApiService.prototype.setHeaders = function () {
         var headersConfig = {
@@ -66,18 +68,21 @@ var ApiService = (function () {
             .catch(this.parseError);
     };
     ApiService.prototype.returnStatus = function (response) {
-        if (response.status >= 200 && response.status < 400) {
+        if (response) {
+            if (response.status == false) {
+                throw response;
+            }
             return response.json();
         }
         throw response;
     };
     ApiService.prototype.parseError = function (error) {
         if (!(error instanceof Error))
-            return new Promise(function (resolve, reject) { return reject(error.json()); });
+            return new Promise(function (resolve, reject) { return reject(error); });
     };
     ApiService = __decorate([
-        inject(HttpClient),
-        __metadata("design:paramtypes", [HttpClient])
+        inject(HttpClient, DialogService),
+        __metadata("design:paramtypes", [HttpClient, DialogService])
     ], ApiService);
     return ApiService;
 }());

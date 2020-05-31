@@ -8,7 +8,8 @@ var App = (function () {
         config.map([
             { route: ['home'], name: 'login', moduleId: PLATFORM.moduleName('components/auth/authcomponent') },
             { route: ['register'], name: 'register', moduleId: PLATFORM.moduleName('components/auth/authcomponent') },
-            { route: ['', 'add-applicant'], name: 'add-applicant', moduleId: PLATFORM.moduleName('components/applicants/add-applicant') }
+            { route: ['', 'add-applicant'], name: 'add-applicant', moduleId: PLATFORM.moduleName('components/applicants/add-applicant') },
+            { route: ['applicant-submit-success'], name: 'applicant-submit-success', moduleId: PLATFORM.moduleName('components/applicants/applicant-submit-success') }
         ]);
     };
     return App;

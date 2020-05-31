@@ -29,5 +29,6 @@
       "SendButtonText": "Senden",
       "ResetButtonText": "Zurücksetzen"
     }
-  }
+  },
+  "ApplicantSubmitSucessMessage": "Bewerber erfolgreich erstellt"
 }
